@@ -19,11 +19,11 @@ module Bob
       end
 
       def cloned?
-        File.directory?("#{working_dir}/.git")
+        File.directory?("#{working_dir(false)}/.git")
       end
 
       def clone
-        run "git clone #{uri} #{working_dir}", false
+        run "git clone #{uri} #{working_dir(false)}", false
       end
 
       def fetch

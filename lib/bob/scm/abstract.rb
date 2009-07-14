@@ -19,9 +19,9 @@ module Bob
       # Directory where the code will be checked out. Make sure the user
       # running Bob is allowed to write to this directory (or you'll get a
       # <tt>Errno::EACCESS</tt>)
-      def working_dir
+      def working_dir(create_dir=true)
         @working_dir ||= "#{Bob.directory}/#{path}".tap { |dir|
-          FileUtils.mkdir_p(dir)
+          FileUtils.mkdir_p(dir) if create_dir
         }
       end
 
