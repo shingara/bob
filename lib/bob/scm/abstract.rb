@@ -43,7 +43,7 @@ module Bob
       protected
 
       def run(command, cd=true)
-        command = "(#{cd ? "cd #{working_dir} && " : ""}#{command} &>/dev/null)"
+        command = "(#{cd ? "cd #{working_dir} && " : ""}#{command} #{Bob.logger.level == Logger::DEBUG ? "" : " &>/dev/null"})"
         Bob.logger.debug(command)
         system(command) || raise(Error, "Couldn't run SCM command `#{command}`")
       end
